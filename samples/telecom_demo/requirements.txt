@@ -1,0 +1,4 @@
+relationalai==0.2.3
+pandas==2.2.2
+snowflake==0.7.0
+jupyterlab==4.1.6
