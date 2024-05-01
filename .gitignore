@@ -1,0 +1,4 @@
+.venv
+debug.jsonl
+raiconfig.toml
+relationalai-vscode.toml
