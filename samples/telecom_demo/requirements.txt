@@ -1,4 +1,6 @@
-relationalai==0.2.3
-pandas==2.2.2
+relationalai==0.2.6
 snowflake==0.7.0
 jupyterlab==4.1.6
+streamlit==1.33.0
+streamlit-folium==0.20.0
+folium==0.16.0
