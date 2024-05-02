@@ -19,12 +19,12 @@ def main():
     node_to_coordinates = dict(zip(data["TOWER_ID"].astype(int), zip(data["LAT"], data["LON"])))
     edges_df["SOURCE_LOCATION"] = edges_df["SOURCE_ID"].map(node_to_coordinates)
     edges_df["TARGET_LOCATION"] = edges_df["TARGET_ID"].map(node_to_coordinates)
-    locations = edges_df[["SOURCE_LOCATION", "TARGET_LOCATION", "DISTANCE"]].values.tolist()
+    locations = edges_df[["SOURCE_ID", "TARGET_ID", "SOURCE_LOCATION", "TARGET_LOCATION", "DISTANCE"]].values.tolist()
 
 
     # Set map center and zoom level
     map_center = [data.LAT.mean(), data.LON.mean()]
-    map_zoom = 3
+    map_zoom = 10
 
     # Create a folium map
     m = folium.Map(location=map_center, zoom_start=map_zoom, control_scale=True)
@@ -57,12 +57,18 @@ def main():
             offline_marker.add_to(m)
 
     # Add polylines between coordinates
-    for point1, point2, distance in locations:
+    for src_id, tgt_id, point1, point2, distance in locations:
+        src_status = data.loc[data["TOWER_ID"] == src_id, "STATUS"].iloc[0]
+        tgt_status = data.loc[data["TOWER_ID"] == tgt_id, "STATUS"].iloc[0]
+        
+        dash_value = 10 if (src_status != "Online") or (tgt_status != "Online") else 0
+        
         folium.PolyLine(
             locations=[point1, point2], 
-            color="red",
+            color="#494848",
             tooltip='{:.2f}'.format(distance),
             weight=4,
+            dash_array=dash_value,
         ).add_to(m)
 
     # Display the folium map in Streamlit
