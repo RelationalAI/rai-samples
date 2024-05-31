@@ -29,25 +29,14 @@ Snowflake username and password. Then, select the Snowflake account and role to 
 
 # Creating Data Stream
 
-To create a data stream and synchronize Snowflake data into the RAI database, follow these steps:
+To create a data stream and synchronize Snowflake data into the RAI database, run this command:
 
-1. Ensure you have created a model. You can create a model using the following Python code:
+```bash
+rai imports:stream --source TELECOM.TOWER_DEMO.TOWER_DATA_V2 --model network_connectivity
+```
 
-    ```python
-    import relationalai as rai
-    model = rai.Model("network_connectivity")
-    ```
-
-    This code initializes a model object named **network_connectivity**.
-
-2. Run the following command to create the data stream:
-
-    ```bash
-    rai imports:stream --source TELECOM.TOWER_DEMO.TOWER_DATA_V2 --model network_connectivity
-    ```
-
-    - `--source`: This flag specifies the fully-qualified name of a Snowflake table or view.
-    - `--model`: This flag specifies the name of the model to which the data in the Snowflake table or view is streamed.
+- `--source`: This flag specifies the fully-qualified name of a Snowflake table or view.
+- `--model`: This flag specifies the name of the model to which the data in the Snowflake table or view is streamed.
 
 # Opening JupyterLab
 

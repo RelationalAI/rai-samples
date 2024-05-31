@@ -1,4 +1,4 @@
-relationalai==0.2.6
+relationalai==0.3.3
 snowflake==0.7.0
 jupyterlab==4.1.6
 streamlit==1.33.0
