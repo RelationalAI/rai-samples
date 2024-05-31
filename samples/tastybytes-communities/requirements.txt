@@ -1,0 +1,2 @@
+relationalai==0.2.9
+jupyterlab==4.1.6
